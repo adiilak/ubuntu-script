@@ -7,12 +7,12 @@ apt-get upgrade -y
 
 # Install docker from Docker-ce repository
 echo "[TASK 2] Install docker from Docker-ce repository"
-apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 apt-get update
-apt-get install docker-ce docker-ce-cli containerd.io
-usermod -aG docker your-user
+apt-get install docker-ce docker-ce-cli containerd.io -y
+usermod -aG docker $USER
 
 # Enable docker service
 echo "[TASK 3] Enable and start docker service"
@@ -26,7 +26,6 @@ sed -i '2 s/^/#/' /etc/fstab
 # Add yum repo file for Kubernetes
 echo "[TASK 3] Add apt repo file for kubernetes"
 apt update
-apt install -y apt-transport-https
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg
 apt-key add -
 touch /etc/apt/sources.list.d/kubernetes.list
