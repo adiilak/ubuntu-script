@@ -26,8 +26,8 @@ sed -i '2 s/^/#/' /etc/fstab
 # Add yum repo file for Kubernetes
 echo "[TASK 3] Add apt repo file for kubernetes"
 apt update
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg
-sudo apt-key add -
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg |\ 
+    apt-key add -
 touch /etc/apt/sources.list.d/kubernetes.list
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 tee -a /etc/apt/sources.list.d/kubernetes.list
